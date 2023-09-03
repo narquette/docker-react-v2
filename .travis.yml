@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t narquette/docker-react-v2 -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true narquette/docker-react-v2 npm run test
