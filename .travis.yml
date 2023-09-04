@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true narquette/docker-react-v2 npm run test
+
+deploy:
+  provider: "elasticbeanstalk"
+  region: "us-east-1"
+  app: "docker-react-v2"
+  environment: "Docker-react-v2-env"
+  bucket: "elasticbeanstalk-us-east-1-003629498091"
+  bucket_path: "docker-react-v2"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
